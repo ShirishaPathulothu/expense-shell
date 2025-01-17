@@ -15,7 +15,7 @@ N="\e[0m"
 CHECK_ROOT(){
     if [ $Userid -ne 0 ]
     then
-       echo  "Please run this script with root previleges" | tee -a &>>$LOG_FILE
+       echo -e "$R Please run this script with root previleges $N" | tee -a &>>$LOG_FILE
        exit 1
     fi     
 }
@@ -43,7 +43,7 @@ VALIDATE $? "Enabled MySQL Server"
 systemctl start mysqld &>>$LOG_FILE
 VALIDATE $? "Started MySQL server"
 
-mysql -h mysql.dev12.shop -u root -pExpenseApp@1-e 'show databases'; &>>$LOG_FILE
+mysql -h mysql.dev12.shop -u root -pExpenseApp@1 -e 'show databases'; &>>$LOG_FILE
 if [ $? -ne 0 ]
 then
    echo "MySql root password is not set Up..going to set Up" &>>$LOG_FILE
