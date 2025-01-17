@@ -44,7 +44,7 @@ VALIDATE $? "Enable Nodejs"
 dnf install nodejs -y &>>$LOG_FILE
 VALIDATE $? "Installing Nodejs"
 
-id expense
+id expense &>>$LOG_FILE
 if [ $? -ne 0 ]
 then
    echo -e "expense user is not exists.. $G Creating $N"
@@ -59,6 +59,12 @@ VALIDATE $? "Creating /app folder"
 
 curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip &>>$LOG_FILE
 VALIDATE $? "Downloading backend application code"
+
+cd /app
+rm -rf /app/* #remove the existing code
+unzip /tmp/backend.zip &>>$LOG_FILE
+VALIDATE $? "Extracting backend application code"
+
 
 
 
