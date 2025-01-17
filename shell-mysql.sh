@@ -51,4 +51,4 @@ then
    VALIDATE $? "Setting up root password"
 else
    echo -e "MySql root password already set Up..$Y SKIPPING $N" | tee -a $LOG_FILE
-fi 
+fi
